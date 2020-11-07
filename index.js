@@ -21,21 +21,26 @@ client.on('ready', () => {
 	console.log('Ready!');
 	defaultStatus();
 	//commands (gotta organsie this later)
-	command(client, ['ping', 'test'], (message) => {
+	command(client, ['ping', 'test'], message => {
 		message.channel.send('Pong!');
 	});
-	command(client, ['cc', 'clearchannel'], (message) => {
-		if (message.member.hasPermission('ADMINISTRATOR')) {
-			message.channel.messages.fetch().then((results) => {
+	command(client, ['cc', 'clearchannel'], message => {
+		if (message.member.hasPermission('MANAGE_MESSAGES')) {
+			message.channel.messages.fetch().then(results => {
 				message.channel.bulkDelete(results);
 			});
 		} else {
-			return message.reply('You don\'t have permissions to execute this command.')
+			return message.reply(
+				"You don't have permissions to execute this command."
+			);
 		}
 	});
-	command(client, 'setstatus', (message) => {
-		if (message.author.id !== process.env.OWNER_ID) return message.reply('You are not the owner of the bot, you can\'t run this command.');
-		const content = message.content.replace('.setstatus ', '')
+	command(client, 'setstatus', message => {
+		if (message.author.id !== process.env.OWNER_ID)
+			return message.reply(
+				"You are not the owner of the bot, you can't run this command."
+			);
+		const content = message.content.replace('>>setstatus ', '');
 		if (content == 'default') {
 			return defaultStatus();
 		} else {
@@ -44,19 +49,17 @@ client.on('ready', () => {
 					name: content,
 					type: 'LISTENING'
 				}
-			})
+			});
 		}
 	});
-
 });
 function defaultStatus() {
 	client.user.setPresence({
 		activity: {
 			name: '🚧',
-			type: 'LISTENING',
-
+			type: 'LISTENING'
 		}
-	})
+	});
 }
 
 client.login(process.env.TOKEN);
