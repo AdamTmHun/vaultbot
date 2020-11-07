@@ -19,10 +19,11 @@ app.listen(port, () =>
 
 client.on('ready', () => {
 	console.log('Ready!');
-
-	command(client, (message) => {
+	//commands (gotta organsie this later)
+	command(client, ['ping', 'test'], (message) => {
 		message.channel.send('Pong!');
-	})
+	});
+
 })
 
 client.login(process.env.TOKEN);
