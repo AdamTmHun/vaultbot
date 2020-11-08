@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
 const command = require('./src/handlers/command');
+const { prefix } = require('./src/handlers/prefix');
 
 /*this is for for always on, don't worry if
 you will run this on your pc, or on a vps.*/
@@ -24,11 +25,13 @@ client.on('ready', () => {
 	command(client, ['ping', 'test'], message => {
 		message.channel.send('Pong!');
 	});
-	command(client, ['cc', 'clearchannel'], message => {
+	command(client, ['clear', 'purge'], message => {
 		if (message.member.hasPermission('MANAGE_MESSAGES')) {
-			message.channel.messages.fetch().then(results => {
-				message.channel.bulkDelete(results);
-			});
+			let content = message.content.replace(`${prefix}purge `, '');
+			content = content.replace(`${prefix}clear `, '');
+			if (!(typeof content === 'int') || content <= 0) return message.reply('Please send a vaild intiger, that is greater than 0.');
+			if (content > 100) return message.reply('Please send a vaild intiger that is lower or equal to 100');
+			message.channel.bulkDelete(content);
 		} else {
 			return message.reply(
 				"You don't have permissions to execute this command."
@@ -51,6 +54,7 @@ client.on('ready', () => {
 				}
 			});
 		}
+		message.channel.send(`My status was successfully set to **${content}**.`)
 	});
 });
 function defaultStatus() {
