@@ -9,7 +9,7 @@ client.on('ready', async () => {
 	console.log('The client is ready!')
 
 	const baseFile = 'command-base.js'
-	const commandBase = require(`./src/cmds/${baseFile}`)
+	const commandBase = require(`./src/handlers/${baseFile}`)
 
 	const readCommands = (dir) => {
 		console.log(dir)

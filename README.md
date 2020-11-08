@@ -18,6 +18,7 @@ express
 - [x] Bot Log in
 - [x] Bot always on
 - [x] Bot status site (not included code, using [UptimeRobot](http://uptimerobot.com/)
+- [x] Advanced Command Handler.
 - [ ] Moderation Commands
 - [ ] Giveaway Feature
 - [ ] Music Feature
@@ -26,3 +27,6 @@ express
 
 # Support Me
 You can support me by giving me some BAT coins collected by Brave
+
+# Huge Thanks To
+@manen , for helping me out when I was blind to see my own mistakes.
