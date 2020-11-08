@@ -12,7 +12,9 @@
   "dependencies": {
     "discord.js": "^12.4.1",
     "express": "^4.17.1",
+    "file-system": "^2.2.2",
     "mongoose": "^5.10.11",
+    "path": "^0.12.7",
     "wokcommands": "^1.0.1"
   }
 }
