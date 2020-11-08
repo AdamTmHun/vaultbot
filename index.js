@@ -57,6 +57,9 @@ client.on('ready', () => {
 		}
 		message.channel.send(`My status was successfully set to **${content}**.`)
 	});
+	command(client, ['uptime', 'status', 'botstatus'], message =>{
+		return message.channel.send(process.env.UPTIME_URL);
+	});
 });
 function defaultStatus() {
 	client.user.setPresence({
