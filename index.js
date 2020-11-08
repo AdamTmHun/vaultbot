@@ -29,7 +29,8 @@ client.on('ready', () => {
 		if (message.member.hasPermission('MANAGE_MESSAGES')) {
 			let content = message.content.replace(`${prefix}purge `, '');
 			content = content.replace(`${prefix}clear `, '');
-			if (!(typeof content === 'int') || content <= 0) return message.reply('Please send a vaild intiger, that is greater than 0.');
+			content = parseInt(content);
+			if (typeof content !== 'number' || content <= 0) return message.reply('Please send a vaild intiger, that is greater than 0.');
 			if (content > 100) return message.reply('Please send a vaild intiger that is lower or equal to 100');
 			message.channel.bulkDelete(content);
 		} else {
