@@ -47,11 +47,13 @@ module.exports = (client, commandOptions) => {
 	let {
 		commands,
 		expectedArgs = '',
+		description = 'No description provided.',
 		permissionError = 'You do not have permission to run this command.',
 		minArgs = 0,
 		maxArgs = null,
-		permissions = [],
+		permissions =
 		requiredRoles = [],
+		cooldown = -1,
 		ownerOnly = false,
 		nullowOnly = false,
 		guildOnly = true,
@@ -63,7 +65,7 @@ module.exports = (client, commandOptions) => {
 		commands = [commands];
 	}
 
-	console.log(`Registering command "${commands[0]}"`);
+	console.log(`  ▶   Registering command "${commands[0]}"`);
 
 	// Ensure the permissions are in an array and are all valid
 	if (permissions.length) {
@@ -159,6 +161,8 @@ module.exports = (client, commandOptions) => {
 				}
 				if (guildOnly === true) {
 					if (!message.guild) {
+						const embed = new MessageEmbed() 
+						.setTitle('Hey! This is a server only command. Please use it in a server!')
 						return message.author.send(embed);
 					}
 				}

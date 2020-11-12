@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js')
 module.exports = {
 	commands: 'easteregg',
+	cooldown: 0,
 	guildOnly: false,
 	run: (message, args, text, client) => {
 		const embed = new MessageEmbed()
