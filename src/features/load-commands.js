@@ -12,11 +12,12 @@ module.exports = (client) => {
 	db.set('COMMAND_AMOUNT', 0)
 
 	const readCommands = (dir) => {
-		let dirFormat = dir.replace('src/cmds/', '').toUpperCase();
-		dirFormat = dirFormat.replace('SRC/CMDS', '');
-		dirformat = dirFormat.replace('/', '');
-		if (dirFormat !== '') console.log('----------  ' + dirFormat + '  ----------');
-
+		if (db.get('RUN_COMMAND') === true) {
+			let dirFormat = dir.replace('src/cmds/', '').toUpperCase();
+			dirFormat = dirFormat.replace('SRC/CMDS', '');
+			dirformat = dirFormat.replace('/', '');
+			if (dirFormat !== '') console.log('----------  ' + dirFormat + '  ----------');
+		}
 		const files = fs.readdirSync(path.join('/home/runner/vaultbot', dir))
 		for (const file of files) {
 			const stat = fs.lstatSync(path.join('/home/runner/vaultbot', dir, file))

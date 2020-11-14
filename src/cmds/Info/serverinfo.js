@@ -51,7 +51,7 @@ module.exports = {
 				`**❯ Explicit Filter:** ${filterLevels[message.guild.explicitContentFilter]}`,
 				`**❯ Verification Level:** ${verificationLevels[message.guild.verificationLevel]}`,
 				`**❯ Time Created:** ${moment(message.guild.createdTimestamp).format('LT')} ${moment(message.guild.createdTimestamp).format('LL')} ${moment(message.guild.createdTimestamp).fromNow()}`,
-				'\u200b'
+				'\u200b', true
 			])
 			.addField('Statistics', [
 				`**❯ Role Count:** ${roles.length}`,
@@ -64,16 +64,16 @@ module.exports = {
 				`**❯ Text Channels:** ${channels.filter(channel => channel.type === 'text').size}`,
 				`**❯ Voice Channels:** ${channels.filter(channel => channel.type === 'voice').size}`,
 				`**❯ Boost Count:** ${message.guild.premiumSubscriptionCount || '0'}`,
-				'\u200b'
+				'\u200b' , true
 			])
 			.addField('Presence', [
 				`**❯ Online:** ${members.filter(member => member.presence.status === 'online').size}`,
 				`**❯ Idle:** ${members.filter(member => member.presence.status === 'idle').size}`,
 				`**❯ Do Not Disturb:** ${members.filter(member => member.presence.status === 'dnd').size}`,
 				`**❯ Offline:** ${members.filter(member => member.presence.status === 'offline').size}`,
-				'\u200b'
+				'\u200b', true
 			])
-			.addField(`Roles [${roles.length - 1}]`, roles.length < 10 ? roles.join(', ') : roles.length > 10 ? this.client.utils.trimArray(roles) : 'None')
+			.addField(`Roles [${roles.length - 1}]`, roles.length < 10 ? roles.join(', ') : roles.length > 10 ? this.client.utils.trimArray(roles) : 'None', true)
 			.setTimestamp();
 		message.channel.send(embed);
 	}

@@ -1,5 +1,5 @@
 module.exports = {
-	commands: 'dm',
+	commands: ['dm', 'pm'],
 	minArgs: 2,
 	maxArgs: 2,
 	expectedArgs: '<user> <message>',

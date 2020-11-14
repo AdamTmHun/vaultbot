@@ -1,5 +1,7 @@
 const { prefix } = require('../handlers/prefix.json');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js')
+const db = require('quick.db');
+require('events').EventEmitter.defaultMaxListeners = db.get('COMMAND_AMOUNT');
 
 const validatePermissions = permissions => {
 	const validPermissions = [
